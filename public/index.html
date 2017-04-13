@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Divvy Dock Status</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="app.css">
 	<script src="https://unpkg.com/vue"></script>
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="container">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">Location</div>
+			<div class="panel-body">
+				<div class="bg-primary">Success <span class="badge">33</span> </div>
+				<div class="bg-danger">Success <span class="badge">33</span> </div>
+			</div>
+		</div>
+
 		{{ message }}
 	</div>
 	<script src="app.js"></script>
