@@ -16,7 +16,7 @@
 
         <div class="row" v-for="station in stations">
             <div class="panel panel-primary">
-                <div class="panel-heading">{{station.stationName}} - {{station.status}}</div>
+                <div class="panel-heading"><strong>{{station.name}}</strong> - {{station.stationName}} - {{station.status}}</div>
                 <div class="panel-body text-center">
                     <div class="col-xs-6">
                         <span class="h3">bikes</span> <strong><span v-bind:class="available(station.availableBikes)">{{station.availableBikes}}</span></strong>

@@ -2,19 +2,26 @@ var app = new Vue({
     el: "#app",
     data: {
         stations: [],
-        favIds: [300, 226, 117]
+        favs: {300: "Gym", 226: "Home", 117: "CTA L"}
     },
     methods: {
         available: function(num) {
             return "h1 " + (num > 0 ? "text-success" : "text-danger");
+        },
+        isFavorite: function(station) {
+            return Object.keys(this.favs).indexOf(station.id.toString()) > -1;
+        },
+        addName: function(station) {
+            station.name = this.favs[station.id.toString()];
+            return station;
         }
     },
     created: function() {
         this.$http.get("https://crossorigin.me/https://feeds.divvybikes.com/stations/stations.json").then(response => {
             this.stations = response.data.stationBeanList
-                .filter((station) => this.favIds.indexOf(station.id) > -1)
-                .sort((a, b) => a.stationName.localeCompare(b.stationName))
-            console.log(JSON.stringify(this.stations))
+                .filter(station => this.isFavorite(station))
+                .map(station => this.addName(station))
+                .sort((a, b) => a.stationName.localeCompare(b.stationName));
         }, response => {
             this.stations = []
             console.log("Error: " + response)
