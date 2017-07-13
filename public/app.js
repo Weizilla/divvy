@@ -2,7 +2,9 @@ var app = new Vue({
     el: "#app",
     data: {
         stations: [],
-        favs: {300: "Gym", 226: "Home", 117: "CTA L"}
+        favs: {300: "Gym", 226: "Home", 117: "CTA L"},
+        favRoutes: [(226, 117), (226, 300), (300, 117), (300, 226), (117, 300), (117, 226)],
+        routes: []
     },
     methods: {
         available: function(num) {
