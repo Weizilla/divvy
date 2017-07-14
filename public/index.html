@@ -11,12 +11,26 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.core.min.js"></script>
+    <script src="https://use.fontawesome.com/f89a6b4a16.js"></script>
   </head>
   <body>
     <div id="app" class="container">
+        <div class="row" v-for="route in routes">
+            <div class="panel" v-bind:class="route.status">
+                <div class="panel-heading"><strong>{{route.start.name}}</strong> - {{route.end.name}}</div>
+                <div class="panel-body text-center">
+                    <div class="col-xs-6">
+                        <span class="h3">bikes</span> <strong><span v-bind:class="route.status">{{route.start.availableBikes}}</span></strong>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="h3">docks</span> <strong><span v-bind:class="route.status">{{route.end.availableDocks}}</span></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row" v-for="station in stations">
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading"><strong>{{station.name}}</strong> - {{station.stationName}} - {{station.status}}</div>
                 <div class="panel-body text-center">
                     <div class="col-xs-6">
