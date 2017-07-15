@@ -6,23 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Divvy Dock Status</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="app.css">
     <script src="https://unpkg.com/vue"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="app.css">
   </head>
   <body>
     <div id="app" class="container">
+        <div class="row" v-for="route in routes">
+            <div class="panel" v-bind:class="'panel-' + route.status">
+                <div class="panel-heading">{{route.start.name}} - {{route.end.name}}</div>
+                <div class="panel-body text-center">
+                    <div class="col-xs-5">
+                        <i class="material-icons">{{route.start.imageName}}</i>
+                        <span class="badge" v-bind:class="'alert-' + route.start.bikeStatus">{{route.start.availableBikes}}</span>
+                    </div>
+                    <div class="col-xs-2">
+                        <i class="material-icons big" v-bind:class="'text-' + route.status">arrow_forward</i>
+                    </div>
+                    <div class="col-xs-5">
+                        <i class="material-icons">{{route.end.imageName}}</i>
+                        <span class="badge" v-bind:class="'alert-' + route.end.dockStatus">{{route.end.availableDocks}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row" v-for="station in stations">
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading"><strong>{{station.name}}</strong> - {{station.stationName}} - {{station.status}}</div>
                 <div class="panel-body text-center">
-                    <div class="col-xs-6">
-                        <span class="h3">bikes</span> <strong><span v-bind:class="available(station.availableBikes)">{{station.availableBikes}}</span></strong>
+                    <div class="col-xs-5">
+                        <i class="material-icons">directions_bike</i>
+                        <strong><span class="badge" v-bind:class="'alert-' + station.bikeStatus">{{station.availableBikes}}</span></strong>
                     </div>
-                    <div class="col-xs-6">
-                        <span class="h3">docks</span> <strong><span v-bind:class="available(station.availableDocks)">{{station.availableDocks}}</span></strong>
+                    <div class="col-xs-2"> </div>
+                    <div class="col-xs-5">
+                        <i class="material-icons">play_for_work</i>
+                        <strong><span class="badge" v-bind:class="'alert-' + station.dockStatus">{{station.availableDocks}}</span></strong>
                     </div>
                 </div>
             </div>

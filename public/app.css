@@ -1,0 +1,11 @@
+.material-icons { 
+    font-size: 36px; 
+}
+
+.big {
+    font-size: 48px;
+}
+
+.alert-muted {
+    background: darkgrey;
+}
